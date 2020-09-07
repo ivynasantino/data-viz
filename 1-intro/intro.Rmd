@@ -1,0 +1,153 @@
+---
+title: "EDA Spotify"
+output: html_notebook
+---
+
+Este notebook é o ínício de uma série de tutoriais de como construir visualizações. A princípio vamos começar gráficos bem simples, mas bastante informativos.
+
+Os dados utilizados são do Spotify, e foram baixados a partir dos tutoriais disponibilizados [aqui](https://dandaramcsousa.github.io/2020/06/02/dados-e-forro-vol-2.html), os scripts expostos durante o tutorial encapsulei em um script python localizado na pasta `code/import_data_spotify.py`. Para executar é da seguinte forma:
+
+`python import_data_spotify.py -n <nome_artista> -e <arquivo_artista_export> 
+
+Ao final terá o arquivo csv com as informações sobre as músicas e álbuns do artista.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.cap = '',
+  fig.align = 'center',
+  fig.width = 8,
+  fig.height = 5
+)
+```
+
+
+Pacotes necessários para rodar as visualizações
+```{r}
+library(magrittr)
+library(ggplot2)
+library(plotly)
+library(DT)
+```
+
+Importando os dados
+
+```{r}
+cp_data <- readr::read_csv("../data/calcinhapreta.csv")
+```
+
+Então depois de importar os dados, que tal explorar um pouco dos dados?
+
+
+```{r}
+top_five <- cp_data %>% 
+  dplyr::group_by(album) %>% 
+  dplyr::summarise(mean_pop = mean(popularity)) %>% 
+  dplyr::arrange(-mean_pop) %>% 
+  head(5)
+```
+
+Qual o top 5 dos álbuns mais populares da banda Calcinha Preta?
+
+```{r}
+top_five %>% 
+  ggplot(aes(x = mean_pop,
+             y = album)) +
+  geom_col(fill = "darkorange") +
+  labs(title = "Top 5 dos álbuns mais populares",
+       subtitle = "Calcinha Preta",
+       x = "Média de popularidade",
+       y = "Álbum") +
+  theme_classic()
+```
+
+Melhorando a visualização:
+```{r}
+top_five %>% 
+  ggplot(aes(x = mean_pop,
+             y = reorder(album, mean_pop))) +
+  geom_col(fill = "darkorange") +
+  labs(title = "Top 5 dos álbuns mais populares",
+       subtitle = "Calcinha Preta",
+       x = "Média de popularidade",
+       y = "Álbum") +
+  theme_classic()
+```
+
+Forma 2 de mostrar o top 5
+```{r}
+top_five %>% 
+  ggplot(aes(x = mean_pop,
+             y = reorder(album, -mean_pop))) +
+  geom_point(color = "darkorange") +
+  geom_segment(aes(y = reorder(album, -mean_pop),
+                   yend = reorder(album, -mean_pop),
+                   x = 0,
+                   xend = mean_pop,
+                   color = "darkorange")) +
+  labs(title = "Top 5 dos álbuns mais populares",
+       subtitle = "Calcinha Preta",
+       x = "Média de popularidade",
+       y = "Álbum") +
+  theme_classic()
+  
+```
+
+Forma interativa
+```{r}
+top_five %>% 
+  plot_ly(x = ~mean_pop,
+          y = ~album,
+          type = 'bar',
+          text = ~paste('Álbum: ', album,
+                        '<br>Média de popularidade: ', mean_pop)) %>% 
+  layout(title = "Top 5 dos álbuns mais populares de Calcinha Preta",
+         xaxis = list(title = "Média de popularidade"),
+         yaxis = list(title = "Álbum"))
+```
+
+Utilizando recursos de manipulação de dados
+
+```{r}
+balada_prime <- cp_data %>% 
+  dplyr::filter(album == "Balada Prime")
+```
+
+
+```{r}
+balada_prime %>% 
+  arrange(desc(popularity)) %>% 
+  select(track_number, name, popularity, release_date) %>% 
+  datatable(class = 'cell-border stripe',
+            filter = 'top',
+            rownames = FALSE, 
+            options = list(pageLength = 5,
+                           dom = 'ftp'),
+            colnames = c("Nº faixa", "Música", "Popularidade", "Data"))
+```
+
+
+```{r}
+top_five_track <- cp_data %>% 
+  dplyr::arrange(-popularity) %>% 
+  head(5)
+  
+```
+
+Quais as faixas mais populares?
+```{r}
+top_five_track %>% 
+  ggplot(aes(x = popularity,
+             y = reorder(name, -popularity),
+             fill = album)) +
+  geom_col(position = position_stack()) +
+  labs(title = "Músicas mais populares de Calcinha Preta",
+       x = "Popularidade",
+       y = "Música",
+       fill = "Álbum") +
+  theme_classic() +
+  scale_fill_brewer(palette = "Set1")
+```
+
