@@ -18,8 +18,8 @@ E nem só de gráficos de barras se vive o data-viz.. há também outros tipos d
 * [Gerador de paletas](https://coolors.co/)
 
 ## Referências
-* [Eficiência de canais]()
-* [Marcas e canais]()
+* [Eficiência de canais](https://github.com/ivynasantino/data-viz/blob/master/assets/docs/Efici%C3%AAncia%20de%20canais.pdf)
+* [Marcas e canais](https://github.com/ivynasantino/data-viz/blob/master/assets/docs/Figuras%20para%20ajudar%20na%20an%C3%A1lise.pdf)
 
 ## Desafio
 E o desafio dessa vez é realizar a evolução do desafio 2. Relembrando um pouco, no desafio 2 foi feito o esqueleto da narrativa do raio-x, agora a atividade é colocar a mão na massa e fazer as visualizações. Aconselho fazer as visus em Vegalite, pois já poderíamos aproveitar para o site, já pouparia tempo de desenvolvimento, já que é uma ferramenta que utiliza js.
