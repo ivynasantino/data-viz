@@ -1,12 +1,12 @@
 # Introdução a visualização de dados
 
 ## Por onde começamos?
-![deardata](https://github.com/ivynasantino/data-viz/blob/master/img/intro/dear_data.png?raw=true)
+![deardata](https://github.com/ivynasantino/data-viz/blob/master/assets/img/intro/dear_data.png?raw=true)
 
 ## Representações
-![infografico1](https://github.com/ivynasantino/data-viz/blob/master/img/intro/infog_1.png?raw=true)
+![infografico1](https://github.com/ivynasantino/data-viz/blob/master/assets/img/intro/infog_1.png?raw=true)
 
-![infografico2](https://github.com/ivynasantino/data-viz/blob/master/img/intro/infog_2.png?raw=true)
+![infografico2](https://github.com/ivynasantino/data-viz/blob/master/assets/img/intro/infog_2.png?raw=true)
 
 
 ## Sugestões de ferramentas
