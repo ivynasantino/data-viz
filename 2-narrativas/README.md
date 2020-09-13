@@ -1,6 +1,8 @@
 # Contruindo narrativas
 
 ## Stori o que?
+![](https://jpimg.com.br/uploads/2020/01/gretchen-meme-300x170.png)
+
 Costumo falar que é uma contação de história, é reforçar as informações dispostas nas visualizações do seu documento. 
 
 Então, a exploração dos dados (EDA) alidado com o storytelling, é uma técnica muito utilizada em veículos de comunicação, já que deixa seu conteúdo bem mais "digestivo" ao leitor, pois não é só textos corridos e cansativos ou só imagens jogadas, arriscando não entender o contexto em que estão inseridas.
