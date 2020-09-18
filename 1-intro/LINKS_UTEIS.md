@@ -14,3 +14,6 @@
 * [Três visualizações e uma história parte - 1](https://observablehq.com/@ivynasantino/tres-visualizacoes-e-uma-historia)
 * [Três visualizações e uma história parte - 2](https://observablehq.com/@ivynasantino/quais-historias-contam-os-dados-do-spotify-para-lana-del-rey)
 
+## Tutoriais
+* [Visualizaçes de dados com Vegalite](https://observablehq.com/collection/@nazareno/curso-de-visualizacao-de-dados)
+* [Visualizações de dados com D3](https://observablehq.com/collection/@nazareno/visualizacao-com-d3)
